@@ -106,14 +106,14 @@ ul.menu {
   gap: 10px;
 }
 
-.levels-group {
+.menu-group {
   padding: 10px;
   border: 1px solid var(--stroke);
   border-radius: var(--radius-md);
   background: var(--surface-soft);
 }
 
-.levels-heading {
+.menu-group-heading {
   display: flex;
   align-items: center;
   gap: 14px;
@@ -124,28 +124,28 @@ ul.menu {
   user-select: none;
 }
 
-.levels-heading::-webkit-details-marker {
+.menu-group-heading::-webkit-details-marker {
   display: none;
 }
 
-.levels-heading:hover {
+.menu-group-heading:hover {
   background: var(--surface-hover);
 }
 
-.levels-heading:focus-visible {
+.menu-group-heading:focus-visible {
   outline: none;
   box-shadow: var(--ring);
 }
 
-.levels-heading .chev {
+.menu-group-heading .chev {
   transition: transform 0.2s ease;
 }
 
-.levels-disclosure[open] .levels-heading .chev {
+.menu-group-disclosure[open] .menu-group-heading .chev {
   transform: rotate(90deg);
 }
 
-.levels-list {
+.menu-group-list {
   list-style: none;
   display: grid;
   gap: 8px;
