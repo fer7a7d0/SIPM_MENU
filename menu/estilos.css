@@ -106,6 +106,54 @@ ul.menu {
   gap: 10px;
 }
 
+.levels-group {
+  padding: 10px;
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius-md);
+  background: var(--surface-soft);
+}
+
+.levels-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 4px 6px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.levels-heading::-webkit-details-marker {
+  display: none;
+}
+
+.levels-heading:hover {
+  background: var(--surface-hover);
+}
+
+.levels-heading:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+.levels-heading .chev {
+  transition: transform 0.2s ease;
+}
+
+.levels-disclosure[open] .levels-heading .chev {
+  transform: rotate(90deg);
+}
+
+.levels-list {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  margin: 10px 0 0 19px;
+  padding: 0 0 0 12px;
+  border-left: 1px solid var(--stroke);
+}
+
 .item {
   opacity: 0;
   transform: translateY(18px);
