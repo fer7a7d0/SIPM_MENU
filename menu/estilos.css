@@ -106,6 +106,54 @@ ul.menu {
   gap: 10px;
 }
 
+.menu-group {
+  padding: 10px;
+  border: 1px solid var(--stroke);
+  border-radius: var(--radius-md);
+  background: var(--surface-soft);
+}
+
+.menu-group-heading {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 4px 6px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+
+.menu-group-heading::-webkit-details-marker {
+  display: none;
+}
+
+.menu-group-heading:hover {
+  background: var(--surface-hover);
+}
+
+.menu-group-heading:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
+.menu-group-heading .chev {
+  transition: transform 0.2s ease;
+}
+
+.menu-group-disclosure[open] .menu-group-heading .chev {
+  transform: rotate(90deg);
+}
+
+.menu-group-list {
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  margin: 10px 0 0 19px;
+  padding: 0 0 0 12px;
+  border-left: 1px solid var(--stroke);
+}
+
 .item {
   opacity: 0;
   transform: translateY(18px);
