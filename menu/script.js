@@ -12,12 +12,12 @@ document.querySelectorAll('.item a').forEach(link => {
 const dateElement = document.querySelector('#current-date');
 const timeElement = document.querySelector('#current-time');
 const dateFormatter = new Intl.DateTimeFormat('es', {
-  day: '2-digit',
-  month: '2-digit',
+  day: 'numeric',
+  month: 'numeric',
   year: 'numeric'
 });
 const timeFormatter = new Intl.DateTimeFormat('en-US', {
-  hour: '2-digit',
+  hour: 'numeric',
   minute: '2-digit',
   second: '2-digit',
   hour12: true
@@ -26,7 +26,10 @@ const timeFormatter = new Intl.DateTimeFormat('en-US', {
 function updateDateTime() {
   const now = new Date();
   dateElement.textContent = dateFormatter.format(now);
-  timeElement.textContent = timeFormatter.format(now).replace(/\u202f/g, ' ');
+  const timeParts = timeFormatter.formatToParts(now);
+  const timeValues = Object.fromEntries(timeParts.map(({ type, value }) => [type, value]));
+  const meridiem = timeValues.dayPeriod.toLowerCase() === 'am' ? 'a.m.' : 'p.m.';
+  timeElement.textContent = `${timeValues.hour}:${timeValues.minute}:${timeValues.second} ${meridiem}`;
 }
 
 updateDateTime();
