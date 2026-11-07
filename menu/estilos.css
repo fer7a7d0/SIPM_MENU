@@ -79,7 +79,7 @@ body {
 
 .logo {
   display: block;
-  width: clamp(130px, 30vw, 230px);
+  width: clamp(104px, 24vw, 184px);
   height: auto;
   flex-shrink: 0;
 }
@@ -291,7 +291,7 @@ ul.menu {
   }
 
   .logo {
-    width: clamp(120px, 34vw, 160px);
+    width: clamp(96px, 27.2vw, 128px);
   }
 
   .card {
