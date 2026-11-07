@@ -8,3 +8,26 @@ document.querySelectorAll('.item a').forEach(link => {
     if (navigator.vibrate) navigator.vibrate(10);
   });
 });
+
+const dateElement = document.querySelector('#current-date');
+const timeElement = document.querySelector('#current-time');
+const dateFormatter = new Intl.DateTimeFormat('es', {
+  day: '2-digit',
+  month: '2-digit',
+  year: 'numeric'
+});
+const timeFormatter = new Intl.DateTimeFormat('en-US', {
+  hour: '2-digit',
+  minute: '2-digit',
+  second: '2-digit',
+  hour12: true
+});
+
+function updateDateTime() {
+  const now = new Date();
+  dateElement.textContent = dateFormatter.format(now);
+  timeElement.textContent = timeFormatter.format(now).replace(/\u202f/g, ' ');
+}
+
+updateDateTime();
+setInterval(updateDateTime, 1000);
