@@ -81,6 +81,17 @@ body {
   backdrop-filter: blur(18px) saturate(1.12);
 }
 
+.logo-link {
+  display: block;
+  flex-shrink: 0;
+  border-radius: var(--radius-sm);
+}
+
+.logo-link:focus-visible {
+  outline: none;
+  box-shadow: var(--ring);
+}
+
 .logo {
   display: block;
   width: clamp(104px, 24vw, 184px);
