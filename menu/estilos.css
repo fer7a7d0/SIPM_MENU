@@ -66,6 +66,9 @@ body {
 }
 
 .header {
+  position: sticky;
+  top: env(safe-area-inset-top);
+  z-index: 10;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -74,7 +77,8 @@ body {
   padding: 14px 18px;
   border: 1px solid var(--stroke);
   border-radius: var(--radius-lg);
-  background: linear-gradient(135deg, rgba(110, 201, 255, 0.09), rgba(255, 255, 255, 0.025));
+  background: linear-gradient(135deg, rgba(110, 201, 255, 0.22), var(--surface) 80%);
+  backdrop-filter: blur(18px) saturate(1.12);
 }
 
 .logo {
