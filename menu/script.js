@@ -1,3 +1,19 @@
+const menu = document.querySelector('ul.menu');
+const menuItems = Array.from(menu.children);
+const getMenuItemLabel = item => item.querySelector('.menu-group-heading .label, a .label')?.textContent.trim() ?? '';
+
+menuItems.sort((firstItem, secondItem) => {
+  const firstLabel = getMenuItemLabel(firstItem);
+  const secondLabel = getMenuItemLabel(secondItem);
+  const firstIsConsulta = firstLabel.startsWith('Consulta');
+  const secondIsConsulta = secondLabel.startsWith('Consulta');
+
+  if (firstIsConsulta !== secondIsConsulta) return firstIsConsulta ? 1 : -1;
+  return firstLabel.localeCompare(secondLabel, 'es', { sensitivity: 'base' });
+});
+
+menu.append(...menuItems);
+
 // Mantiene la vibracion tactil al pulsar las opciones del menu en dispositivos compatibles.
 document.querySelectorAll('.item a').forEach(link => {
   link.addEventListener('click', () => {
