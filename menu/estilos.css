@@ -27,23 +27,24 @@
 @media (prefers-color-scheme: dark) {
   :root {
     color-scheme: dark;
-    --ink: #e5efed;
-    --muted: #a3b7b2;
-    --paper: #101a19;
-    --paper-glow: rgba(39, 110, 91, 0.2);
-    --card: #172421;
-    --group: #14211e;
-    --group-hover: #20342e;
-    --item-hover: #1b2d29;
-    --line: #29403a;
-    --accent: #55d7b9;
-    --accent-soft: #173c35;
-    --icon-line: #285248;
-    --nested-line: #304840;
-    --chevron: #9bb4ac;
-    --focus: 0 0 0 4px rgba(85, 215, 185, 0.25);
-    --shadow-header: 0 12px 36px rgba(0, 0, 0, 0.18);
-    --shadow-card: 0 22px 56px rgba(0, 0, 0, 0.24);
+    --ink: #f4f7ff;
+    --muted: #aab5d0;
+    --paper: #0a0f1f;
+    --paper-gradient: linear-gradient(140deg, #0a0f1f, #14111d 50%, #1c2833);
+    --paper-glow: rgba(43, 214, 196, 0.22);
+    --card: rgba(13, 19, 33, 0.82);
+    --group: rgba(255, 255, 255, 0.07);
+    --group-hover: rgba(255, 255, 255, 0.12);
+    --item-hover: rgba(255, 255, 255, 0.12);
+    --line: rgba(255, 255, 255, 0.12);
+    --accent: #2bd6c4;
+    --accent-soft: rgba(43, 214, 196, 0.16);
+    --icon-line: rgba(255, 255, 255, 0.18);
+    --nested-line: rgba(255, 255, 255, 0.16);
+    --chevron: #aab5d0;
+    --focus: 0 0 0 4px rgba(43, 214, 196, 0.28);
+    --shadow-header: 0 26px 60px rgba(0, 0, 0, 0.4);
+    --shadow-card: 0 26px 60px rgba(0, 0, 0, 0.4);
   }
 }
 
@@ -58,7 +59,7 @@ body {
   -webkit-font-smoothing: antialiased;
   background:
     radial-gradient(ellipse at 6% 0%, var(--paper-glow), transparent 38rem),
-    var(--paper);
+    var(--paper-gradient, var(--paper));
 }
 
 .wrap { width: min(760px, 100%); margin: 0 auto; }
