@@ -1,18 +1,50 @@
 :root {
-  color-scheme: light;
+  color-scheme: light dark;
   --ink: #172d32;
   --muted: #64777a;
   --paper: #f4f7f5;
+  --paper-glow: rgba(186, 225, 210, 0.42);
   --card: #ffffff;
+  --group: #f8faf9;
+  --group-hover: #eef5f2;
+  --item-hover: #f7fbf9;
   --line: #e3ebe7;
   --accent: #087f70;
   --accent-soft: #e5f4ef;
+  --icon-line: #d5ebe2;
+  --nested-line: #d9e5df;
+  --chevron: #81938d;
   --focus: 0 0 0 4px rgba(8, 127, 112, 0.18);
+  --shadow-header: 0 12px 36px rgba(31, 64, 56, 0.06);
+  --shadow-card: 0 22px 56px rgba(31, 64, 56, 0.08);
   --font-title: "Sora", "Segoe UI", sans-serif;
   --font-body: "Space Grotesk", "Segoe UI", sans-serif;
   --radius-lg: 24px;
   --radius-md: 16px;
   --radius-sm: 12px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: dark;
+    --ink: #e5efed;
+    --muted: #a3b7b2;
+    --paper: #101a19;
+    --paper-glow: rgba(39, 110, 91, 0.2);
+    --card: #172421;
+    --group: #14211e;
+    --group-hover: #20342e;
+    --item-hover: #1b2d29;
+    --line: #29403a;
+    --accent: #55d7b9;
+    --accent-soft: #173c35;
+    --icon-line: #285248;
+    --nested-line: #304840;
+    --chevron: #9bb4ac;
+    --focus: 0 0 0 4px rgba(85, 215, 185, 0.25);
+    --shadow-header: 0 12px 36px rgba(0, 0, 0, 0.18);
+    --shadow-card: 0 22px 56px rgba(0, 0, 0, 0.24);
+  }
 }
 
 * { box-sizing: border-box; }
@@ -25,7 +57,7 @@ body {
   font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   background:
-    radial-gradient(ellipse at 6% 0%, rgba(186, 225, 210, 0.42), transparent 38rem),
+    radial-gradient(ellipse at 6% 0%, var(--paper-glow), transparent 38rem),
     var(--paper);
 }
 
@@ -41,7 +73,7 @@ body {
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  box-shadow: 0 12px 36px rgba(31, 64, 56, 0.06);
+  box-shadow: var(--shadow-header);
 }
 
 .logo-link { display: block; flex-shrink: 0; border-radius: var(--radius-sm); }
@@ -64,7 +96,7 @@ body {
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  box-shadow: 0 22px 56px rgba(31, 64, 56, 0.08);
+  box-shadow: var(--shadow-card);
 }
 
 ul.menu {
@@ -78,7 +110,7 @@ ul.menu {
 
 .menu-group {
   padding: 8px;
-  background: #f8faf9;
+  background: var(--group);
   border: 1px solid var(--line);
   border-radius: var(--radius-md);
 }
@@ -94,7 +126,7 @@ ul.menu {
   user-select: none;
 }
 .menu-group-heading::-webkit-details-marker { display: none; }
-.menu-group-heading:hover { background: #eef5f2; }
+.menu-group-heading:hover { background: var(--group-hover); }
 .menu-group-heading:focus-visible { outline: none; box-shadow: var(--focus); }
 .menu-group-heading .chev { transition: transform 180ms ease; }
 .menu-group-disclosure[open] .menu-group-heading .chev { transform: rotate(90deg); }
@@ -104,7 +136,7 @@ ul.menu {
   gap: 6px;
   margin: 8px 0 0 20px;
   padding: 4px 0 4px 12px;
-  border-left: 1px solid #d9e5df;
+  border-left: 1px solid var(--nested-line);
   list-style: none;
 }
 
@@ -122,12 +154,12 @@ ul.menu {
   padding: 13px 14px;
   color: inherit;
   text-decoration: none;
-  background: #fff;
+  background: var(--card);
   border: 1px solid transparent;
   border-radius: var(--radius-md);
   transition: transform 160ms ease, background 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
 }
-.item a:hover { background: #f7fbf9; border-color: var(--line); transform: translateY(-1px); }
+.item a:hover { background: var(--item-hover); border-color: var(--line); transform: translateY(-1px); }
 .item a:active { transform: scale(0.99); }
 .item a:focus-visible { outline: none; box-shadow: var(--focus); }
 
@@ -139,7 +171,7 @@ ul.menu {
   place-items: center;
   color: var(--accent);
   background: var(--accent-soft);
-  border: 1px solid #d5ebe2;
+  border: 1px solid var(--icon-line);
   border-radius: 13px;
 }
 .icon svg { width: 20px; height: 20px; stroke: currentColor; }
@@ -157,7 +189,7 @@ ul.menu {
   vertical-align: middle;
 }
 .desc { display: block; margin-top: 4px; color: var(--muted); font-size: 12px; line-height: 1.4; }
-.chev { margin-left: auto; color: #81938d; font-size: 22px; line-height: 1; }
+.chev { margin-left: auto; color: var(--chevron); font-size: 22px; line-height: 1; }
 
 @media (max-width: 620px) {
   body { padding-right: 14px; padding-left: 14px; }
