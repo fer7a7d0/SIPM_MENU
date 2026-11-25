@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#f4f7f5">
+  <meta name="theme-color" content="#0b1120" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f4f7f5" media="(prefers-color-scheme: light)">
   <meta name="description" content="Accesos rápidos a las herramientas de gestión, inventario y producción de SIPM.">
   <title>SIPM | Centro de operaciones</title>
 
@@ -16,23 +17,32 @@
 </head>
 <body>
   <div class="wrap">
-    <!-- Encabezado con logotipo y descripción -->
-    <div class="header">
-      <a class="logo-link" href="https://fmr-3-nl.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Abrir Tres en Raya contra IA">
+    <header class="header">
+      <a class="logo-link" href="./" aria-label="Inicio de SIPM">
         <img class="logo" src="img/logo-sipm.png" alt="SIPM">
       </a>
       <div class="header-copy">
         <div class="title" id="current-date"></div>
         <div class="subtitle" id="current-time" aria-live="off"></div>
       </div>
-    </div>
+    </header>
 
-    <!-- Tarjeta principal con accesos del menu -->
-    <div class="menu-heading">ACCESOS RÁPIDOS</div>
-    <div class="card" role="menu">
+    <main>
+      <section class="page-intro" aria-labelledby="page-title">
+        <div>
+          <h1 id="page-title">Panel de operaciones</h1>
+          <p>Todo lo que necesitas para mantener la operación en movimiento.</p>
+        </div>
+      </section>
+
+      <div class="section-heading">
+        <h2 class="menu-heading">Accesos rápidos</h2>
+        <span class="module-count" id="module-count">07 módulos</span>
+      </div>
+    <nav class="card" aria-label="Accesos rápidos">
       <ul class="menu">
-        
-        <li class="item" role="menuitem">
+
+        <li class="item">
           <a href="https://sipm-bp.vercel.app/">
             <span class="icon">
               <!-- busqueda de productos -->
@@ -45,14 +55,14 @@
               </svg>
             </span>
             <span>
-              <span class="label">Busqueda de productos</span>
+              <span class="label">Búsqueda de productos</span>
               <span class="desc">Sistema profesional de busqueda</span>
             </span>
             <span class="chev">›</span>
           </a>
         </li>
 
-        <li class="item" role="menuitem">
+        <li class="item">
           <a href="https://sipm-ri.vercel.app/">
             <span class="icon">
               <!-- captura inventario -->
@@ -72,7 +82,7 @@
           </a>
         </li>
 
-        <li class="item" role="menuitem">
+        <li class="item">
           <a href="https://sipm-cd.vercel.app/">
             <span class="icon">
               <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -83,7 +93,7 @@
               </svg>
             </span>
             <span>
-              <span class="label">Registro de cumplimento <span class="new-badge">Nuevo</span></span>
+              <span class="label">Indicador de PG <span class="new-badge">Nuevo</span></span>
               <span class="desc">Cumplimiento de la demanda de productos</span>
             </span>
             <span class="chev">›</span>
@@ -107,8 +117,8 @@
             </span>
               <span class="chev" aria-hidden="true">›</span>
             </summary>
-          <ul class="menu-group-list" role="group">
-            <li class="item" role="menuitem">
+          <ul class="menu-group-list">
+            <li class="item">
               <a href="https://gas-flow-kappa.vercel.app/">
                 <span class="icon">
                   <!-- niveles de tanques termo -->
@@ -129,7 +139,7 @@
                 <span class="chev">›</span>
               </a>
             </li>
-            <li class="item" role="menuitem">
+            <li class="item">
               <a href="https://sipm-rpt-tt.vercel.app/">
                 <span class="icon">
                   <!-- niveles de tube trailers -->
@@ -149,7 +159,7 @@
                 <span class="chev">›</span>
               </a>
             </li>
-            <li class="item" role="menuitem">
+            <li class="item">
               <a href="https://sipm-rphe.vercel.app/">
                 <span class="icon">
                   <!-- niveles de pipas de helio -->
@@ -191,8 +201,8 @@
                 </span>
               <span class="chev" aria-hidden="true">›</span>
             </summary>
-            <ul class="menu-group-list" role="group">
-              <li class="item" role="menuitem">
+            <ul class="menu-group-list">
+              <li class="item">
                 <a href="https://sipm-rp-pg.vercel.app/">
                   <span class="icon">
                     <!-- produccion PG -->
@@ -211,7 +221,7 @@
                   <span class="chev">›</span>
                 </a>
               </li>
-              <li class="item" role="menuitem">
+              <li class="item">
                 <a href="https://sipm-rp-ph.vercel.app/">
                   <span class="icon">
                     <!-- produccion PH -->
@@ -235,7 +245,7 @@
           </details>
         </li>
 
-        <li class="item" role="menuitem">
+        <li class="item">
           <a href="https://sipm-rmc.vercel.app/">
             <span class="icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -253,7 +263,7 @@
           </a>
         </li>
 
-        <li class="item" role="menuitem">
+        <li class="item">
           <a href="https://sipm-sp.vercel.app/">
             <span class="icon">
               <!-- produccion PH reporte -->
@@ -269,7 +279,7 @@
             </span>
             <span class="chev">›</span>
           </a>
-        </li> 
+        </li>
 
         <li class="item menu-group">
           <details class="menu-group-disclosure">
@@ -289,8 +299,8 @@
               </span>
               <span class="chev" aria-hidden="true">›</span>
             </summary>
-            <ul class="menu-group-list" role="group">
-              <li class="item" role="menuitem">
+            <ul class="menu-group-list">
+              <li class="item">
                 <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vSP8xsF9UIsOsysSHpSrUydmPTBT8VeAIm89TMoj5jT4SJBzNjx3e-CdVfCZgfRunoJeM1vqWH24F5L/pubhtml?gid=2060401048&single=true">
                   <span class="icon">
                     <!-- inventario -->
@@ -308,7 +318,7 @@
                   <span class="chev">›</span>
                 </a>
               </li>
-              <li class="item" role="menuitem">
+              <li class="item">
                 <a href="https://docs.google.com/spreadsheets/d/e/2PACX-1vQyNbpD4EIFHU_oOjjqw-xAMRWCCZAMnlHYWNg0OCcpV2_16QR6PTDSsBU-qGK7xF_mW_qvog_RRUpU/pubhtml?gid=1132704667&single=true">
                   <span class="icon">
                     <!-- produccion PH reporte -->
@@ -328,9 +338,12 @@
             </ul>
           </details>
         </li>
-        
+
     </ul>
-    </div>
+    </nav>
+    </main>
+
+    <footer class="footer"><span class="footer-mark" aria-hidden="true"></span><span>SIPM</span><span class="footer-divider">/</span><span>Sistema de gestión operativa</span></footer>
   </div>
 
   <!-- Script de interacciones del menu -->
