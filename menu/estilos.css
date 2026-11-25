@@ -3,9 +3,11 @@
   --ink: #17283b;
   --muted: #65778d;
   --paper: #f4f7fb;
-  --paper-glow: rgba(186, 208, 240, 0.42);
+  --paper-gradient: linear-gradient(140deg, #f8fafd 0%, #eef3fb 52%, #f4f8fd 100%);
+  --paper-glow: rgba(186, 208, 240, 0.28);
   --card: #ffffff;
   --header-surface: rgba(255, 255, 255, 0.6);
+  --header-glaze: linear-gradient(135deg, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0.04) 70%);
   --header-border: rgba(255, 255, 255, 0.78);
   --group: #f8fafd;
   --group-hover: #edf3fb;
@@ -38,10 +40,11 @@
     --ink: #f4f7ff;
     --muted: #aab5d0;
     --paper: #091225;
-    --paper-gradient: linear-gradient(140deg, #091225, #111d34 50%, #142b46);
-    --paper-glow: rgba(79, 143, 230, 0.24);
+    --paper-gradient: linear-gradient(140deg, #0a1427 0%, #101d32 52%, #142640 100%);
+    --paper-glow: rgba(79, 143, 230, 0.2);
     --card: rgba(10, 18, 35, 0.82);
     --header-surface: rgba(8, 16, 32, 0.58);
+    --header-glaze: linear-gradient(135deg, rgba(115, 187, 255, 0.14), rgba(255, 255, 255, 0.025) 70%);
     --header-border: rgba(145, 183, 232, 0.24);
     --group: rgba(255, 255, 255, 0.07);
     --group-hover: rgba(255, 255, 255, 0.12);
@@ -92,12 +95,12 @@ body {
   gap: 20px;
   margin-bottom: 34px;
   padding: 18px 22px;
-  background: var(--header-surface);
+  background: var(--header-glaze), var(--header-surface);
   border: 1px solid var(--header-border);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-header);
-  -webkit-backdrop-filter: blur(24px) saturate(155%);
-  backdrop-filter: blur(24px) saturate(155%);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14), var(--shadow-header);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  backdrop-filter: blur(28px) saturate(180%);
 }
 
 .logo-link { display: block; flex-shrink: 0; border-radius: var(--radius-sm); }
