@@ -1,18 +1,37 @@
 const menu = document.querySelector('ul.menu');
-const menuItems = Array.from(menu.children);
-const getMenuItemLabel = item => item.querySelector('.menu-group-heading .label, a .label')?.textContent.trim() ?? '';
+const categoryByLabel = new Map([
+  ['Búsqueda de productos', 'Catálogo'],
+  ['Registro de inventario', 'Inventario'],
+  ['Indicador de PG', 'Indicadores'],
+  ['Registro de niveles', 'Producción'],
+  ['Registro de producción', 'Producción'],
+  ['Registro de supervisión', 'Operaciones'],
+  ['Consulta', 'Informes']
+]);
+const orderByLabel = new Map(Array.from(categoryByLabel.keys(), (label, index) => [label, index]));
+const getLabel = item => {
+  const label = item.querySelector('.menu-group-heading .label, a .label');
+  return label?.firstChild?.textContent.trim() ?? '';
+};
 
-menuItems.sort((firstItem, secondItem) => {
-  const firstLabel = getMenuItemLabel(firstItem);
-  const secondLabel = getMenuItemLabel(secondItem);
-  const firstIsConsulta = firstLabel.startsWith('Consulta');
-  const secondIsConsulta = secondLabel.startsWith('Consulta');
+const menuItems = Array.from(menu.children).filter(item => getLabel(item) !== 'Registro de fallas');
+menuItems.sort((firstItem, secondItem) => (orderByLabel.get(getLabel(firstItem)) ?? 99) - (orderByLabel.get(getLabel(secondItem)) ?? 99));
 
-  if (firstIsConsulta !== secondIsConsulta) return firstIsConsulta ? 1 : -1;
-  return firstLabel.localeCompare(secondLabel, 'es', { sensitivity: 'base' });
+menu.replaceChildren(...menuItems);
+menuItems.forEach(item => {
+  const label = item.querySelector('.menu-group-heading .label, a .label');
+  const category = categoryByLabel.get(label?.textContent.trim() ?? '');
+  const content = label?.parentElement;
+  if (!category || !content) return;
+
+  const categoryElement = document.createElement('span');
+  categoryElement.className = 'category';
+  categoryElement.textContent = category;
+  content.classList.add('item-copy');
+  content.prepend(categoryElement);
 });
 
-menu.append(...menuItems);
+document.querySelector('#module-count').textContent = `${String(menuItems.length).padStart(2, '0')} módulos`;
 
 // Mantiene la vibracion tactil al pulsar las opciones del menu en dispositivos compatibles.
 document.querySelectorAll('.item a').forEach(link => {
@@ -23,26 +42,19 @@ document.querySelectorAll('.item a').forEach(link => {
 
 const dateElement = document.querySelector('#current-date');
 const timeElement = document.querySelector('#current-time');
-const dateFormatter = new Intl.DateTimeFormat('es', {
-  day: 'numeric',
-  month: 'numeric',
-  year: 'numeric'
+const dateFormatter = new Intl.DateTimeFormat('es-MX', {
+  weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
 });
-const timeFormatter = new Intl.DateTimeFormat('en-US', {
-  hour: 'numeric',
-  minute: '2-digit',
-  second: '2-digit',
-  hour12: true
+const timeFormatter = new Intl.DateTimeFormat('es-MX', {
+  hour: '2-digit', minute: '2-digit', hour12: true
 });
 
 function updateDateTime() {
   const now = new Date();
-  dateElement.textContent = dateFormatter.format(now);
-  const timeParts = timeFormatter.formatToParts(now);
-  const timeValues = Object.fromEntries(timeParts.map(({ type, value }) => [type, value]));
-  const meridiem = timeValues.dayPeriod.toLowerCase() === 'am' ? 'a.m.' : 'p.m.';
-  timeElement.textContent = `${timeValues.hour}:${timeValues.minute}:${timeValues.second} ${meridiem}`;
+  const date = dateFormatter.format(now);
+  dateElement.textContent = date.charAt(0).toLocaleUpperCase('es-MX') + date.slice(1);
+  timeElement.textContent = timeFormatter.format(now).replace(' a. m.', ' a.m.').replace(' p. m.', ' p.m.');
 }
 
 updateDateTime();
-setInterval(updateDateTime, 1000);
+setInterval(updateDateTime, 60_000);
