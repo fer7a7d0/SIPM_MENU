@@ -12,7 +12,7 @@
   --item-surface: linear-gradient(145deg, #ffffff, #f3f7fc);
   --item-hover: linear-gradient(145deg, #ffffff, #edf5ff);
   --item-border: rgba(102, 139, 181, 0.2);
-  --item-hover-border: rgba(36, 109, 173, 0.38);
+  --item-hover-border: rgba(44, 151, 177, 0.48);
   --item-shadow: 0 10px 24px rgba(31, 54, 86, 0.07), inset 0 1px 0 rgba(255, 255, 255, 0.86);
   --item-hover-shadow: 0 12px 28px rgba(31, 54, 86, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9);
   --line: #e1e8f0;
@@ -22,7 +22,7 @@
   --icon-line: rgba(44, 151, 177, 0.38);
   --nested-line: #d8e3f0;
   --chevron: #7b8ea5;
-  --focus: 0 0 0 4px rgba(36, 109, 173, 0.18);
+  --focus: 0 0 0 4px rgba(44, 151, 177, 0.22);
   --shadow-header: 0 12px 36px rgba(31, 54, 86, 0.09);
   --shadow-card: 0 22px 56px rgba(31, 54, 86, 0.1);
   --font-title: "Sora", "Segoe UI", sans-serif;
@@ -48,9 +48,9 @@
     --item-surface: linear-gradient(145deg, rgba(26, 43, 67, 0.96), rgba(15, 27, 47, 0.96));
     --item-hover: linear-gradient(145deg, rgba(34, 56, 84, 0.98), rgba(19, 36, 60, 0.98));
     --item-border: rgba(121, 158, 200, 0.18);
-    --item-hover-border: rgba(92, 174, 229, 0.38);
+    --item-hover-border: rgba(78, 193, 208, 0.54);
     --item-shadow: 0 10px 26px rgba(0, 4, 15, 0.24), 0 0 20px rgba(67, 139, 205, 0.06), inset 0 1px 0 rgba(162, 198, 232, 0.05);
-    --item-hover-shadow: 0 14px 30px rgba(0, 4, 15, 0.32), 0 0 24px rgba(67, 139, 205, 0.12), inset 0 1px 0 rgba(162, 198, 232, 0.08);
+    --item-hover-shadow: 0 14px 30px rgba(0, 4, 15, 0.32), 0 0 24px rgba(55, 180, 200, 0.2), inset 0 1px 0 rgba(162, 198, 232, 0.08);
     --line: rgba(121, 158, 200, 0.2);
     --accent: #64c7d9;
     --accent-soft: rgba(55, 166, 195, 0.14);
@@ -163,6 +163,13 @@ ul.menu {
   box-shadow: var(--item-hover-shadow);
   transform: translateY(-1px);
 }
+.menu-group:has(.menu-group-disclosure[open]) {
+  border-color: var(--item-hover-border);
+  box-shadow: var(--item-hover-shadow);
+}
+.menu-group-disclosure[open] .menu-group-heading {
+  background: var(--accent-soft);
+}
 
 .menu-group-heading {
   display: flex;
@@ -179,6 +186,18 @@ ul.menu {
 .menu-group-heading:focus-visible { outline: none; box-shadow: var(--focus); }
 .menu-group-heading .chev { transform: rotate(90deg); transition: transform 180ms ease; }
 .menu-group-disclosure[open] .menu-group-heading .chev { transform: rotate(270deg); }
+.menu-group-heading:hover .chev,
+.menu-group-disclosure[open] .menu-group-heading .chev {
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border: 1px solid var(--icon-line);
+  border-radius: 10px;
+  color: var(--accent);
+  background: var(--icon-surface);
+  box-shadow: 0 0 14px var(--accent-soft);
+}
 
 .menu-group-list {
   display: grid;
@@ -212,6 +231,14 @@ ul.menu {
 .item a:hover { background: var(--item-hover); border-color: var(--item-hover-border); box-shadow: var(--item-hover-shadow); transform: translateY(-1px); }
 .item a:active { transform: scale(0.99); }
 .item a:focus-visible { outline: none; box-shadow: var(--focus); }
+.item a:hover .chev,
+.item a:focus-visible .chev,
+.item a:active .chev {
+  color: var(--accent);
+  background: var(--icon-surface);
+  border-color: var(--icon-line);
+  box-shadow: 0 0 14px var(--accent-soft);
+}
 
 .icon {
   display: grid;
@@ -239,7 +266,18 @@ ul.menu {
   vertical-align: middle;
 }
 .desc { display: block; margin-top: 4px; color: var(--muted); font-size: 12px; line-height: 1.4; }
-.chev { margin-left: auto; color: var(--chevron); font-size: 22px; line-height: 1; }
+.chev { margin-left: auto; color: var(--chevron); font-size: 22px; line-height: 1; transition: transform 0.2s ease; }
+.item a .chev {
+  display: grid;
+  flex: 0 0 30px;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-size: 17px;
+  transition: color 160ms ease, background 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+}
 
 @media (max-width: 620px) {
   body { padding-right: 14px; padding-left: 14px; }
@@ -250,6 +288,15 @@ ul.menu {
   .item a { gap: 11px; padding: 12px 10px; }
   .icon { flex-basis: 38px; width: 38px; height: 38px; }
   .desc { font-size: 11px; }
+}
+
+@media (min-width: 720px) {
+  ul.menu {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 12px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
